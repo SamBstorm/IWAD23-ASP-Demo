@@ -6,10 +6,14 @@ namespace Demo02.Controllers
 {
     public class HomeController : Controller
     {
+        [ViewData]
+        public string Title { get; set; }
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
+            Title = "Démonstration vue Razor";
             _logger = logger;
         }
 
@@ -31,6 +35,7 @@ namespace Demo02.Controllers
 
         public IActionResult Vue1()
         {
+            ViewData["limit"] = 8;
             return View();
         }
     }

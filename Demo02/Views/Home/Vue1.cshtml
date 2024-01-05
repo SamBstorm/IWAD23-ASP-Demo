@@ -7,13 +7,14 @@
     notes.Add("Steve", 0);
     notes.Add("Alexandre", 10);
     notes.Add("Khun", 20);
+    int limit = (int)ViewData["limit"];
 }
 
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Démonstration vue HTML : Razor boucle</title>
+        <title>@ViewData["Title"] : Razor boucle</title>
         <style>
             .reussi{
                 color : blue;
@@ -39,7 +40,7 @@
             {
                 <tr>
                     <td>@student.Key</td>
-                    <td class="@((student.Value < 10) ? "echec" : "reussi")">@student.Value</td>
+                    <td class="@((student.Value < limit) ? "echec" : "reussi")">@student.Value</td>
                 </tr>
             }
         </tbody>
