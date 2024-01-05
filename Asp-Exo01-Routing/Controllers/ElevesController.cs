@@ -14,7 +14,7 @@ namespace Asp_Exo01_Routing.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Liste");
         }
 
         public string Liste()
@@ -27,7 +27,7 @@ namespace Asp_Exo01_Routing.Controllers
             return result;
         }
 
-        [Route("Eleves/{name}")]
+        //[Route("Eleves/{name}")]
         [Route("Eleves/Check/{name}")]
         [Route("Eleves/{name}/Existe")]
         public void Check(string name)

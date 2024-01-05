@@ -6,7 +6,7 @@ namespace Asp_Exo01_Routing.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction(nameof(HomeController.Index),"Home");
         }
 
         public int LancerDe(int min = 1, int max = 6)
