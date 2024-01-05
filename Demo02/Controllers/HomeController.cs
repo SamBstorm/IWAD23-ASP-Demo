@@ -28,5 +28,10 @@ namespace Demo02.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Vue1()
+        {
+            return View();
+        }
     }
 }

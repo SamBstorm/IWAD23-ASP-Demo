@@ -1,0 +1,48 @@
+﻿@{
+    Dictionary<string, int> notes = new Dictionary<string, int>();
+    notes.Add("Thierry", 20);
+    notes.Add("Aude", 12);
+    notes.Add("Laurent", 18);
+    notes.Add("Samuel", 8);
+    notes.Add("Steve", 0);
+    notes.Add("Alexandre", 10);
+    notes.Add("Khun", 20);
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Démonstration vue HTML : Razor boucle</title>
+        <style>
+            .reussi{
+                color : blue;
+            }
+            .echec{
+                color : orange;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>Démonstration vue HTML : Razor boucle</h1>
+    <p>Dans ce document HTML, est récupéré par Razor un dictionnaire contenant en clé des noms d'élèves et en valeurs des notes.</p>
+    <p>Nous allons reproduire un tableau de 2 colones : Nom et Note; où les valeurs de notes changerons de couleurs selon si inférieur à 10.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de l'élève</th>
+                <th>Note de l'élève</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (KeyValuePair<string,int> student in notes)
+            {
+                <tr>
+                    <td>@student.Key</td>
+                    <td class="@((student.Value < 10) ? "echec" : "reussi")">@student.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </body>
+</html>
