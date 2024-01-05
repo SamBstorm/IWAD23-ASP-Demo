@@ -2,10 +2,24 @@
 <html>
     <head>
         <meta charset="utf-8" />
-    <title>@ViewData["Title"]</title>
+        <title>@ViewData["Title"]</title>
+        <style>
+            body.Black {
+                background-color: #222;
+                color: white;
+            }
+        </style>
     </head>
-    <body>
-        <header>
+    <body class="@TempData["Color"]">
+    @if (TempData.ContainsKey("Color"))
+    {
+        <p>@TempData["Color"]</p>
+    }
+    else
+    {
+        <p>Pas de TempData["Color"]</p>
+    }
+    <header>
             <nav>
                 <ul>
                     <li>

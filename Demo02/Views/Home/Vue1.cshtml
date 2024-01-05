@@ -7,7 +7,9 @@
     notes.Add("Steve", 0);
     notes.Add("Alexandre", 10);
     notes.Add("Khun", 20);
-    int limit = (int)ViewData["limit"];
+    int limit = (int)ViewBag.limit;
+    // int limit = (int)ViewData["limit"];  //Même valeur que par le ViewBag.limit
+    string color = (string)TempData.Peek("Color");
 }
 
 <!DOCTYPE html>

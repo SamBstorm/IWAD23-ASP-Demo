@@ -19,11 +19,13 @@ namespace Demo02.Controllers
 
         public IActionResult Index()
         {
-            return View("_UnderConstruct");
+            if (TempData.ContainsKey("Color")) TempData.Keep();
+            return View();
         }
 
         public IActionResult Privacy()
         {
+            if (TempData.ContainsKey("Color")) TempData.Keep();
             return View("_UnderConstruct");
         }
 
@@ -36,7 +38,14 @@ namespace Demo02.Controllers
         public IActionResult Vue1()
         {
             ViewData["limit"] = 8;
+            //ViewBag.limit = 8;        //Même valeur que le ViewData["limit"]
             return View();
+        }
+
+        public IActionResult SetBlack()
+        {
+            TempData["Color"] = "Black";
+            return RedirectToAction("Index");
         }
     }
 }
