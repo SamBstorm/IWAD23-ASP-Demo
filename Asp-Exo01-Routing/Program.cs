@@ -22,6 +22,8 @@ namespace Asp_Exo01_Routing
 
             app.UseAuthorization();
 
+            app.MapControllers();
+
             app.MapControllerRoute(
                 name: "Pile",
                 pattern: "Jeu/Pile",
