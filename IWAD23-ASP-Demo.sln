@@ -5,6 +5,12 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo01", "Demo01\Demo01.csproj", "{55F5FC59-5A06-481D-B9F7-45E8B738C2A7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exos", "Exos", "{95C4E0E7-BDFF-4F67-8775-FE44C7EE58BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp-Exo01-Routing", "Asp-Exo01-Routing\Asp-Exo01-Routing.csproj", "{51B6753F-06B8-4D19-838D-BFE65A5C3EA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{FFD2F947-4213-4D8D-96B2-443422B884D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{55F5FC59-5A06-481D-B9F7-45E8B738C2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55F5FC59-5A06-481D-B9F7-45E8B738C2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55F5FC59-5A06-481D-B9F7-45E8B738C2A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51B6753F-06B8-4D19-838D-BFE65A5C3EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B6753F-06B8-4D19-838D-BFE65A5C3EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B6753F-06B8-4D19-838D-BFE65A5C3EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B6753F-06B8-4D19-838D-BFE65A5C3EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55F5FC59-5A06-481D-B9F7-45E8B738C2A7} = {FFD2F947-4213-4D8D-96B2-443422B884D4}
+		{51B6753F-06B8-4D19-838D-BFE65A5C3EA3} = {95C4E0E7-BDFF-4F67-8775-FE44C7EE58BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2AFE720-7B66-4589-A1BC-4EBB7883A9DE}
