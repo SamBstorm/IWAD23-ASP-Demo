@@ -1,0 +1,50 @@
+﻿@using Demo02.Models
+@model HomeVue2ViewModel
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>@ViewData["Title"] : Vue2</title>
+    </head>
+    <body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/Home/Index">
+                        <div>Home</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Home/Privacy">
+                        <div>Privacy</div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>@Model.Titre</h1>
+        @foreach(ArticleModel article in Model.Articles)
+        {
+            <article>
+                <h1>@article.Titre</h1>
+                <h3>écrit par @article.Auteur</h3>
+                @if (article.ImageURL != null)
+                {
+                    <img src="@article.ImageURL" />
+                }
+                <hr />
+                @foreach (string paragraphe in article.Paragraphes)
+                {
+                    <p>@paragraphe</p>
+                }
+            </article>
+        }
+    </main>
+    <footer>
+        <p>Création Interface3 - 2024</p>
+    </footer>
+    </body>
+</html>

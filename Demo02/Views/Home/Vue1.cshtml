@@ -1,12 +1,6 @@
-﻿@{
-    Dictionary<string, int> notes = new Dictionary<string, int>();
-    notes.Add("Thierry", 20);
-    notes.Add("Aude", 12);
-    notes.Add("Laurent", 18);
-    notes.Add("Samuel", 8);
-    notes.Add("Steve", 0);
-    notes.Add("Alexandre", 10);
-    notes.Add("Khun", 20);
+﻿@model Dictionary<string, int>
+
+@{
     int limit = (int)ViewBag.limit;
     // int limit = (int)ViewData["limit"];  //Même valeur que par le ViewBag.limit
     string color = (string)TempData.Peek("Color");
@@ -38,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (KeyValuePair<string,int> student in notes)
+            @foreach (KeyValuePair<string,int> student in Model)
             {
                 <tr>
                     <td>@student.Key</td>
