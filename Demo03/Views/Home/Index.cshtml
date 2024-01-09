@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model HomeSearchViewModel
+
+<!DOCTYPE html>
 <html lang="fr-be">
     <head>
         <meta charset="utf-8" />
@@ -6,12 +9,51 @@
     </head>
     <body>
         <h1>Gooooogle</h1>
-        <form method="get" action="/Home/Search">
+    @if (!ViewContext.ModelState.IsValid)
+    {
+        <div style="background-color:Red; color:white; border-radius : 5px; padding:5px;">
+            <p>Il y a dans notre formulaire @ViewContext.ModelState.ErrorCount erreur(s)</p>
+            <dl>
+            @foreach(KeyValuePair<string,ModelStateEntry> kvpError in ViewContext.ModelState)
+            {
+                if(kvpError.Value.Errors.Count > 0)
+                {
+                    <dt>@kvpError.Key :</dt>
+                    <dd>
+                            @foreach(ModelError error in kvpError.Value.Errors)
+                            {
+                                <p>@error.ErrorMessage</p>
+                            }
+                    </dd>
+                }
+            }
+            </dl>
+        </div>
+    }
+    <form method="post">
             <div>
                 <label for="query">Votre recherche :</label>
                 <input id="query" name="query" type="search" placeholder="Tapez ici..." />
             </div>
             <button type="submit">Envoyer</button>
         </form>
-    </body>
+        @if(Model is not null)
+        {
+            <h1>Votre recherche : @Model.Query</h1>
+            <h3>Nombre de résultats : @Model.Results.Count</h3>
+            @if (Model.Results.Count > 0)
+            {
+                <ul>
+                    @foreach (string resultat in Model.Results)
+                    {
+                        <li>@resultat</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Aucun résultat ne correspond à votre recherche...</p>
+            }
+        }
+</body>
 </html>
