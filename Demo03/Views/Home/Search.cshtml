@@ -1,0 +1,26 @@
+﻿@model HomeSearchViewModel
+
+<!DOCTYPE html>
+<html lang="fr-be">
+    <head>
+        <meta charset="utf-8" />
+        <title>Résultat de la recherche : @Model.Query</title>
+    </head>
+    <body>
+        <h1>Votre recherche : @Model.Query</h1>
+        <h3>Nombre de résultats : @Model.Results.Count</h3>
+        @if(Model.Results.Count > 0)
+        {
+            <ul>
+            @foreach(string resultat in Model.Results)
+            {
+                <li>@resultat</li>
+            }
+            </ul>
+        }
+        else
+        {
+            <p>Aucun résultat ne correspond à votre recherche...</p>
+        }
+    </body>
+</html>

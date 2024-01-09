@@ -50,7 +50,7 @@ namespace Demo02.Controllers
             return View(notes);
         }
 
-        public IActionResult Vue2()
+        public IActionResult Vue2(string search = null)
         {
             ArticleModel art1 = new ArticleModel()
             {
@@ -72,6 +72,8 @@ namespace Demo02.Controllers
             HomeVue2ViewModel model = new HomeVue2ViewModel() { Titre = "L'ASP MVC" };
             model.Articles.Add(art1);
             model.Articles.Add(art2);
+            if( search != null)
+                model.Articles = model.Articles.Where(a => a.Titre.Contains(search) || a.Paragraphes.Where(p => p.Contains(search)).Count() > 0).ToList();
             return View(model);
         }
 
