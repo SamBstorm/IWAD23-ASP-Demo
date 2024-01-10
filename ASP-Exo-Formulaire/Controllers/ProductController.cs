@@ -54,6 +54,7 @@ namespace ASP_Exo_Formulaire.Controllers
 
         private static void ValidateProductAddForm(ProductAddForm form, ModelStateDictionary modelState)
         {
+            /* Controle des valeurs non nécessaire car remplacé par les ValidationAttributes
             if (string.IsNullOrWhiteSpace(form.Name))
                 modelState.AddModelError(nameof(form.Name), "Le nom du produit est obligatoire");
             if (!string.IsNullOrWhiteSpace(form.Name) && form.Name.Length > 16)
@@ -64,6 +65,7 @@ namespace ASP_Exo_Formulaire.Controllers
                 modelState.AddModelError(nameof(form.Barcode), "Le code-barre doit être composé de 13 chiffres.");
             if (!string.IsNullOrWhiteSpace(form.Barcode) && !Regex.IsMatch(form.Barcode,"^[0-9]*$"))
                 modelState.AddModelError(nameof(form.Barcode), "Le code-barre doit être composé que de chiffres.");
+            */
             if (form.BuyingPrice <= 0)
                 modelState.AddModelError(nameof(form.BuyingPrice), "Le prix d'achat doit être supérieur à 0 €.");
             if (form.SalePrice is not null && form.SalePrice <= form.BuyingPrice)
