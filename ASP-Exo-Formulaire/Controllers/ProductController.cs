@@ -39,7 +39,7 @@ namespace ASP_Exo_Formulaire.Controllers
         {
             if (form is null) ModelState.AddModelError(nameof(form),"Veuillez remplir le formulaire");
             ValidateProductAddForm(form, ModelState);
-            if(_products.ContainsKey(form.Barcode)) ModelState.AddModelError(nameof(form.Barcode), "Code-barre déjà enregistrer.");
+            if(form.Barcode is not null && _products.ContainsKey(form.Barcode)) ModelState.AddModelError(nameof(form.Barcode), "Code-barre déjà enregistrer.");
             if (!ModelState.IsValid) return View();
             ProductModel product = new ProductModel()
             {

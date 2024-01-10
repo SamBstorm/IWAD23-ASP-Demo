@@ -41,11 +41,11 @@
             </div>
             <div>
                 <label for="BuyingPrice">Prix d'achat :</label>
-                <input type="number" id="BuyingPrice" name="BuyingPrice" required />
+                <input type="text" id="BuyingPrice" name="BuyingPrice" pattern="^[0-9]*,{0,1}[0-9]*$" required />
             </div>
             <div>
                 <label for="SalePrice">Prix de vente :</label>
-            <input type="number" id="SalePrice" name="SalePrice" />
+            <input type="text" id="SalePrice" name="SalePrice" pattern="^[0-9]*,{0,1}[0-9]*$" />
             </div>
             <button type="submit">Enregistrer</button>
         </form>
