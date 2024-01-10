@@ -1,4 +1,7 @@
-﻿@model ProductAddForm
+﻿@* 
+    Plus nécessaire, plus de ModelState interrogé...
+@using Microsoft.AspNetCore.Mvc.ModelBinding *@
+@model ProductAddForm
 <!DOCTYPE html>
 <html lang="fr-be">
     <head>
@@ -11,6 +14,27 @@
         <h1>Ajout d'un produit</h1>
         @if (!ViewContext.ModelState.IsValid)
         {
+            @* Remplacer par ValidationSummary()
+                <div class="alert alert-danger" role="alert">
+                <p>Il y a @ViewContext.ModelState.ErrorCount erreur(s) :</p>
+                <ul>
+                @foreach(KeyValuePair<string, ModelStateEntry> kvpError in ViewContext.ModelState)
+                {
+                    @if(kvpError.Value.Errors.Count > 0)
+                    {
+                    <li>
+                        <h3>@kvpError.Key :</h3>
+                        <ul>
+                            @foreach(ModelError error in kvpError.Value.Errors)
+                            {
+                            <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </li>      
+                    }
+                }
+                </ul>
+            </div> *@
             @Html.ValidationSummary(true,
                 $"Il y a {ViewContext.ModelState.ErrorCount} erreur(s) ...",
                 new { @class = "alert alert-danger", role = "alert" }
@@ -18,31 +42,46 @@
         }
         <div class="row">
             <div class="col-md-6">
+                @* <form method="post"> *@
+                @* 
+                    Par defaut, les paramètres ne sont pas à remplir sauf si le traitement ne se fait pas sur le POST de la route actuelle
+                @using(Html.BeginForm(actionName : "Add", controllerName : "Product", method : FormMethod.Post)){ *@
                 @using(Html.BeginForm()){
                     <div class="form-group">
+                        @* <label for="Name">Nom du produit :</label> *@
                         @Html.LabelFor(m=>m.Name)
+                        @* <input type="text" id="Name" name="Name" class="form-control" required /> *@
                         @Html.EditorFor(m => m.Name, new{ htmlAttributes = new { @class = "form-control"}})
                         @Html.ValidationMessageFor(m => m.Name,null, new {@class = "text-danger"})
                     </div>
                     <div class="form-group">
+                        @* <label for="Barcode">Code-barre :</label> *@
                         @Html.LabelFor(m => m.Barcode)
+                        @* <input type="text" id="Barcode" name="Barcode" class="form-control" required /> *@
                         @Html.EditorFor(m => m.Barcode, new { htmlAttributes = new { @class = "form-control"}})
                         @Html.ValidationMessageFor(m => m.Barcode, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
+                        @* <label for="BuyingPrice">Prix d'achat :</label> *@
                         @Html.LabelFor(m => m.BuyingPrice)
+                        @* <input type="text" id="BuyingPrice" name="BuyingPrice" class="form-control" pattern="^[0-9]*,{0,1}[0-9]*$" required /> *@
                         @Html.EditorFor(m => m.BuyingPrice, new { htmlAttributes = new { @class = "form-control"}})
                         @Html.ValidationMessageFor(m => m.BuyingPrice, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
+                        @* <label for="SalePrice">Prix de vente :</label> *@
                         @Html.LabelFor(m => m.SalePrice)
+                        @* <input type="text" id="SalePrice" name="SalePrice" class="form-control" pattern="^[0-9]*,{0,1}[0-9]*$" /> *@
                         @Html.EditorFor(m => m.SalePrice, new { htmlAttributes = new { @class = "form-control"}})
                         @Html.ValidationMessageFor(m => m.SalePrice, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
+
                     </div>
+                @* </form> *@
                 }
+                @* <a href="/Product/">Revenir à la liste</a> *@
                 @Html.ActionLink("Revenir à la liste", "Index")
             </div>
         </div>
