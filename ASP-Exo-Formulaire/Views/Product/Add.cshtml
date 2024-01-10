@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+<!DOCTYPE html>
+<html lang="fr-be">
+    <head>
+        <meta charset="utf-8" />
+        <title>Exercice Product : Ajout de produits</title>
+    </head>
+    <body>
+        <h1>Ajout d'un produit</h1>
+        @if (!ViewContext.ModelState.IsValid)
+        {
+            <div class="alert alert-danger" role="alert">
+                <p>Il y a @ViewContext.ModelState.ErrorCount erreur(s) :</p>
+                <ul>
+                @foreach(KeyValuePair<string, ModelStateEntry> kvpError in ViewContext.ModelState)
+                {
+                    @if(kvpError.Value.Errors.Count > 0)
+                    {
+                    <li>
+                        <h3>@kvpError.Key :</h3>
+                        <ul>
+                            @foreach(ModelError error in kvpError.Value.Errors)
+                            {
+                            <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </li>      
+                    }
+                }
+                </ul>
+            </div>
+        }
+        <form method="post">
+            <div>
+                <label for="Name">Nom du produit :</label>
+                <input type="text" id="Name" name="Name" required />
+            </div>
+            <div>
+                <label for="Barcode">Code-barre :</label>
+                <input type="text" id="Barcode" name="Barcode" required />
+            </div>
+            <div>
+                <label for="BuyingPrice">Prix d'achat :</label>
+                <input type="number" id="BuyingPrice" name="BuyingPrice" required />
+            </div>
+            <div>
+                <label for="SalePrice">Prix de vente :</label>
+            <input type="number" id="SalePrice" name="SalePrice" />
+            </div>
+            <button type="submit">Enregistrer</button>
+        </form>
+    </body>
+</html>
