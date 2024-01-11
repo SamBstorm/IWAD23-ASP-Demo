@@ -1,4 +1,5 @@
-﻿using ASP_Exo_Formulaire.Models;
+﻿using ASP_Exo_Formulaire.Handlers;
+using ASP_Exo_Formulaire.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text.RegularExpressions;
@@ -16,7 +17,7 @@ namespace ASP_Exo_Formulaire.Controllers
         /// <returns>Vue de la liste des produits</returns>
         public IActionResult Index()
         {
-            return View(_products.Values.ToList());
+            return View(_products.Values.Select(p => p.ToProductListItem()));
         }
         /// <summary>
         /// Route GET : /Product/Add
