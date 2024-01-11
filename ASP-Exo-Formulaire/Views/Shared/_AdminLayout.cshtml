@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="fr-be">
+<head>
+    <meta charset="utf-8" />
+    <title>Exercice Product : Liste des produits</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <a asp-action="Index" asp-controller="Home">
+            <img class="logo" src="~/assets/imgs/logo.png" />
+            <p>Admin Mode</p>
+        </a>
+    </header>
+    <div class="container">
+        <main role="main">
+            <h1>Bienvenu Admin!</h1>
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <p class="text-center">@DateTime.Now.Year - Nos Produits!</p>
+    </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
         <title>Exercice Product : Liste des produits</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        @RenderSection("CSS",false)
     </head>
     <body>
         <header>
@@ -20,6 +21,7 @@
         <footer>
             <p class="text-center">@DateTime.Now.Year - Nos Produits!</p>
         </footer>
+        @await RenderSectionAsync("Scripts", false)
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<ProductListItemViewModel>
 
-@{
-    Layout = "_Layout"; 
-}
-
 <h1>Liste des produits</h1>
 @Html.ActionLink("Ajouter un produit", "Add")
 @if(Model.Count() > 0)
