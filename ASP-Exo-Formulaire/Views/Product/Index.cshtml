@@ -1,48 +1,42 @@
 ﻿@model IEnumerable<ProductListItemViewModel>
-<!DOCTYPE html>
-<html lang="fr-be">
-    <head>
-        <meta charset="utf-8" />
-        <title>Exercice Product : Liste des produits</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </head>
-    <body>
-        <h1>Liste des produits</h1>
-        @Html.ActionLink("Ajouter un produit", "Add")
-        @if(Model.Count() > 0)
-        {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(m => m.Name)</th>
-                        <th>@Html.DisplayNameFor(m => m.Barcode)</th>
-                        <th>@Html.DisplayNameFor(m => m.BuyingPrice)</th>
-                        <th>@Html.DisplayNameFor(m => m.SalePrice)</th>
-                        <th>@Html.DisplayNameFor(m => m.Benefit)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(ProductListItemViewModel prod in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor( m => prod.Name)</td>
-                            <td>@Html.DisplayFor( m => prod.Barcode)</td>
-                            <td>@Html.DisplayFor( m => prod.BuyingPrice)</td>
-                            <td>@Html.DisplayFor( m => prod.SalePrice)</td>
-                            <td>@Html.DisplayFor( m => prod.Benefit)</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <div class="alert alert-warning" role="alert">
-                <p>Aucun produit enregistré...</p>
-                @Html.ActionLink("Il serait temps d'en ajouter un!", "Add")
-            </div>
-        }
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    </body>
-</html>
+
+@{
+    Layout = "_Layout"; 
+}
+
+<h1>Liste des produits</h1>
+@Html.ActionLink("Ajouter un produit", "Add")
+@if(Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.Name)</th>
+                <th>@Html.DisplayNameFor(m => m.Barcode)</th>
+                <th>@Html.DisplayNameFor(m => m.BuyingPrice)</th>
+                <th>@Html.DisplayNameFor(m => m.SalePrice)</th>
+                <th>@Html.DisplayNameFor(m => m.Benefit)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(ProductListItemViewModel prod in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor( m => prod.Name)</td>
+                    <td>@Html.DisplayFor( m => prod.Barcode)</td>
+                    <td>@Html.DisplayFor( m => prod.BuyingPrice)</td>
+                    <td>@Html.DisplayFor( m => prod.SalePrice)</td>
+                    <td>@Html.DisplayFor( m => prod.Benefit)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        <p>Aucun produit enregistré...</p>
+        @Html.ActionLink("Il serait temps d'en ajouter un!", "Add")
+    </div>
+}
+    

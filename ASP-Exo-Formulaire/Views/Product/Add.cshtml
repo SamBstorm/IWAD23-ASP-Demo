@@ -1,51 +1,41 @@
 ﻿@model ProductAddForm
-<!DOCTYPE html>
-<html lang="fr-be">
-    <head>
-        <meta charset="utf-8" />
-        <title>Exercice Product : Ajout de produits</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    </head>
-    <body>
-        <h1>Ajout d'un produit</h1>
-        @if (!ViewContext.ModelState.IsValid)
-        {
-            @Html.ValidationSummary(true,
-                $"Il y a {ViewContext.ModelState.ErrorCount} erreur(s) ...",
-                new { @class = "alert alert-danger", role = "alert" }
-            )
-        }
-        <div class="row">
-            <div class="col-md-6">
-                @using(Html.BeginForm()){
-                    <div class="form-group">
-                        @Html.LabelFor(m=>m.Name)
-                        @Html.EditorFor(m => m.Name, new{ htmlAttributes = new { @class = "form-control"}})
-                        @Html.ValidationMessageFor(m => m.Name,null, new {@class = "text-danger"})
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Barcode)
-                        @Html.EditorFor(m => m.Barcode, new { htmlAttributes = new { @class = "form-control"}})
-                        @Html.ValidationMessageFor(m => m.Barcode, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.BuyingPrice)
-                        @Html.EditorFor(m => m.BuyingPrice, new { htmlAttributes = new { @class = "form-control"}})
-                        @Html.ValidationMessageFor(m => m.BuyingPrice, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.SalePrice)
-                        @Html.EditorFor(m => m.SalePrice, new { htmlAttributes = new { @class = "form-control"}})
-                        @Html.ValidationMessageFor(m => m.SalePrice, null, new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                }
-                @Html.ActionLink("Revenir à la liste", "Index")
+@{
+    Layout = "_Layout";
+}
+<h1>Ajout d'un produit</h1>
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="ModelOnly"  class="alert alert-danger" role="alert">
+        Il y a @ViewContext.ModelState.ErrorCount erreur(s) ...
+    </div>
+}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class = "form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-        </div>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    </body>
-</html>
+            <div class="form-group">
+                <label asp-for="Barcode" class="control-label"></label>
+                <input asp-for="Barcode" class="form-control" />
+                <span asp-validation-for="Barcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BuyingPrice" class="control-label"></label>
+                <input asp-for="BuyingPrice" class="form-control" />
+                <span asp-validation-for="BuyingPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalePrice" class="control-label"></label>
+                <input asp-for="SalePrice" class="form-control" />
+                <span asp-validation-for="SalePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </form>
+        <a asp-action="Index">Revenir à la liste</a>
+    </div>
+</div>
