@@ -21,7 +21,18 @@ namespace ASP_Exo03_Scaffolding.Controllers
         // GET: SleepController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SleepDetailsViewModel model;
+            try
+            {
+                model = _sleeps.SingleOrDefault(data => data.Id == id).ToDetails();
+                if (model is null) throw new InvalidDataException();
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"Identifiant {id} invalide...";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
         }
 
         // GET: SleepController/Create
@@ -33,10 +44,16 @@ namespace ASP_Exo03_Scaffolding.Controllers
         // POST: SleepController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(SleepCreateForm form)
         {
             try
             {
+                if (form is null) ModelState.AddModelError(nameof(form), "Pas de formulaire valide");
+                if (!ModelState.IsValid) throw new Exception();
+                SleepModel data = form.ToData();
+                data.Id = _sleeps.Max(d => d.Id) + 1;
+                _sleeps.Add(data);
+                TempData["SuccessMessage"] = "Enregistrement effectué avec succès!";
                 return RedirectToAction(nameof(Index));
             }
             catch

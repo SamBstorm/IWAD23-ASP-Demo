@@ -1,0 +1,58 @@
+﻿@model ASP_Exo03_Scaffolding.Models.SleepCreateForm
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SleepCreateForm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SleepStart" class="control-label"></label>
+                <input asp-for="SleepStart" class="form-control" />
+                <span asp-validation-for="SleepStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SleepEnd" class="control-label"></label>
+                <input asp-for="SleepEnd" class="form-control" />
+                <span asp-validation-for="SleepEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HaveDreamed" /> @Html.DisplayNameFor(model => model.HaveDreamed)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsNightmare" /> @Html.DisplayNameFor(model => model.IsNightmare)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DreamDescription" class="control-label"></label>
+                <textarea asp-for="DreamDescription" class="form-control"></textarea>
+                <span asp-validation-for="DreamDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HaveSnored" /> @Html.DisplayNameFor(model => model.HaveSnored)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

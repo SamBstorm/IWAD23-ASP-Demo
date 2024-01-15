@@ -6,6 +6,19 @@
 
 <h1>Index</h1>
 
+@if(TempData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-warning" role="alert">
+        <p>@TempData["ErrorMessage"]</p>
+    </div>
+}
+@if (TempData["SuccessMessage"] is not null)
+{
+    <div class="alert alert-success" role="alert">
+        <p>@TempData["SuccessMessage"]</p>
+    </div>
+}
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
