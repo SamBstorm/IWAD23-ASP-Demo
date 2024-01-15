@@ -65,42 +65,73 @@ namespace ASP_Exo03_Scaffolding.Controllers
         // GET: SleepController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                SleepEditForm model = _sleeps.SingleOrDefault(d => d.Id == id).ToEdit();
+                if (model is null) throw new InvalidDataException();
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"Identifiant {id} invalide...";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: SleepController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, SleepEditForm form)
         {
             try
             {
+                if (form is null) ModelState.AddModelError(nameof(form), "Pas de formulaire valide");
+                if (!ModelState.IsValid) throw new Exception();
+                SleepModel data = form.ToData();
+                data.SleepStart = _sleeps.SingleOrDefault(d => d.Id == data.Id).SleepStart;
+                data.SleepEnd = _sleeps.SingleOrDefault(d => d.Id == data.Id).SleepEnd;
+                data.HaveSnored = _sleeps.SingleOrDefault(d => d.Id == data.Id).HaveSnored;
+                _sleeps.Remove(_sleeps.SingleOrDefault(d => d.Id == id));
+                _sleeps.Add(data);
+                TempData["SuccessMessage"] = $"L'enregistrement {id} a été mis à jour.";
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(form);
             }
         }
 
         // GET: SleepController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                SleepDeleteForm model = _sleeps.SingleOrDefault(d => d.Id == id).ToDelete();
+                if (model is null) throw new InvalidDataException();
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"L'identifiant {id} est invalide...";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: SleepController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, SleepDeleteForm form)
         {
             try
             {
+                _sleeps.Remove(_sleeps.SingleOrDefault(d => d.Id == id));
+                TempData["SuccessMessage"] = $"L'enrgistrement {id} a été supprimé";
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(form);
             }
         }
     }

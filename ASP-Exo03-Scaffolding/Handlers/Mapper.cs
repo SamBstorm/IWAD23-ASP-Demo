@@ -44,5 +44,36 @@ namespace ASP_Exo03_Scaffolding.Handlers
                 HaveSnored = entity.HaveSnored
             };
         }
+
+        public static SleepEditForm ToEdit (this SleepModel entity) {
+            if (entity is null) return null;
+            return new SleepEditForm(){
+                Id = entity.Id,
+                HaveDreamed = entity.HaveDreamed,
+                IsNightmare = entity.IsNightmare,
+                DreamDescription = entity.DreamDescription
+            };
+        }
+
+        public static SleepModel ToData (this SleepEditForm entity) {
+            if (entity is null) return null;
+            return new SleepModel()
+            {
+                Id = entity.Id,
+                HaveDreamed = entity.HaveDreamed,
+                IsNightmare = entity.IsNightmare,
+                DreamDescription = entity.DreamDescription
+            };
+        }
+
+        public static SleepDeleteForm ToDelete (this SleepModel entity)
+        {
+            if (entity is null) return null;
+            return new SleepDeleteForm()
+            {
+                Id = entity.Id,
+                SleepStart = entity.SleepStart
+            };
+        }
     }
 }
