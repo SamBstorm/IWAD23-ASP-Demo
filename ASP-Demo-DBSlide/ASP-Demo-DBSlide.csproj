@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ASP_Demo_DBSlide</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLL-Demo-DBSlide\BLL-Demo-DBSlide.csproj" />
+    <ProjectReference Include="..\DAL-Demo-DBSlide\DAL-Demo-DBSlide.csproj" />
+  </ItemGroup>
+
+</Project>
