@@ -10,10 +10,4 @@
     <ProjectReference Include="..\DAL-Demo-DBSlide\DAL-Demo-DBSlide.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
