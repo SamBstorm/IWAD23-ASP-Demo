@@ -1,5 +1,5 @@
 ﻿using BLL_Demo_DBSlide.Entities;
-using DAL = DAL_Demo_DBSlide.Services;
+using DAL = DAL_Demo_DBSlide.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +11,11 @@ namespace BLL_Demo_DBSlide.Services
 {
     public class StudentService : IStudentRepository<Student>
     {
-        private readonly DAL.StudentService _repository;
+        private readonly IStudentRepository<DAL.Student> _repository;
 
-        public StudentService()
+        public StudentService(IStudentRepository<DAL.Student> repository)
         {
-            _repository = new DAL.StudentService();
+            _repository = repository;
         }
 
         public IEnumerable<Student> Get()

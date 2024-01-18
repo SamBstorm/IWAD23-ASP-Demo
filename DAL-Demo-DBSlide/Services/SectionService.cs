@@ -1,5 +1,6 @@
 ﻿using DAL_Demo_DBSlide.Entities;
 using DAL_Demo_DBSlide.Mappers;
+using Microsoft.Extensions.Configuration;
 using Shared_Demo_DBSlide.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,11 @@ using System.Text;
 
 namespace DAL_Demo_DBSlide.Services
 {
-    public class SectionService : ISectionRepository<Section>
+    public class SectionService : BaseService, ISectionRepository<Section>
     {
-        private string _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DBSlide;Integrated Security=True;Encrypt=True";
+        public SectionService(IConfiguration configuration) : base(configuration, "DBSlide")
+        {
+        }
 
         public IEnumerable<Section> Get() {
             using (SqlConnection connection = new SqlConnection(_connectionString)) {

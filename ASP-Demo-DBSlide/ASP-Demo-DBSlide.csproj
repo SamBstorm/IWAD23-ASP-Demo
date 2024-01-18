@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BLL-Demo-DBSlide\BLL-Demo-DBSlide.csproj" />
     <ProjectReference Include="..\DAL-Demo-DBSlide\DAL-Demo-DBSlide.csproj" />
     <ProjectReference Include="..\Shared-Demo-DBSlide\Shared-Demo-DBSlide.csproj" />

@@ -1,4 +1,4 @@
-﻿using DAL = DAL_Demo_DBSlide.Services;
+﻿using DAL = DAL_Demo_DBSlide.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +11,11 @@ namespace BLL_Demo_DBSlide.Services
 {
     public class SectionService : ISectionRepository<Section>
     {
-        private readonly DAL.SectionService _repository;
+        private readonly ISectionRepository<DAL.Section> _repository;
 
-        public SectionService()
+        public SectionService(ISectionRepository<DAL.Section> repository)
         {
-            _repository = new DAL.SectionService();
+            _repository = repository;
         }
 
         public IEnumerable<Section> Get() {
