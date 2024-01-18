@@ -23,5 +23,16 @@ namespace DAL_Demo_DBSlide.Mappers
                 Course_id = (string)record["Course_id"]
             };
         }
+
+        public static Section ToSection(this IDataRecord record)
+        {
+            if (record is null) return null;
+            return new Section()
+            {
+                Section_id = (int)record["Section_id"],
+                Section_name = (record["Section_name"] == DBNull.Value)? null : (string?)record["Section_name"],
+                Delegate_id = (record["Delegate_id"] == DBNull.Value)? null : (int?)record["Delegate_id"]
+            };
+        }
     }
 }
