@@ -30,8 +30,8 @@ namespace DAL_Demo_DBSlide.Mappers
             return new Section()
             {
                 Section_id = (int)record["Section_id"],
-                Section_name = (record["Section_name"] == DBNull.Value)? null : (string?)record["Section_name"],
-                Delegate_id = (record["Delegate_id"] == DBNull.Value)? null : (int?)record["Delegate_id"]
+                Section_name = (record["Section_name"] is DBNull)? null : (string?)record["Section_name"],
+                Delegate_id = (record["Delegate_id"] is DBNull)? null : (int?)record["Delegate_id"]
             };
         }
     }

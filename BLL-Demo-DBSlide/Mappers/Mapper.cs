@@ -8,6 +8,7 @@ namespace BLL_Demo_DBSlide.Mappers
 {
     internal static class Mapper
     {
+        #region Student
         public static BLL.Student ToBLL(this DAL.Student entity)
         {
             if (entity is null) return null;
@@ -22,7 +23,8 @@ namespace BLL_Demo_DBSlide.Mappers
                 entity.Course_id);
         }
 
-        public static DAL.Student ToDAL(this BLL.Student entity) {
+        public static DAL.Student ToDAL(this BLL.Student entity)
+        {
             if (entity is null) return null;
             return new DAL.Student()
             {
@@ -35,6 +37,7 @@ namespace BLL_Demo_DBSlide.Mappers
                 Year_result = entity.Year_result,
                 Course_id = entity.Course_id
             };
-        }
+        } 
+        #endregion
     }
 }
