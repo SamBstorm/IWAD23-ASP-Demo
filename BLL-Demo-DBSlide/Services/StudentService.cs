@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using BLL_Demo_DBSlide.Mappers;
+using Shared_Demo_DBSlide.Repositories;
 
 namespace BLL_Demo_DBSlide.Services
 {
-    public class StudentService
+    public class StudentService : IStudentRepository<Student>
     {
         private readonly DAL.StudentService _repository;
 
@@ -34,6 +35,10 @@ namespace BLL_Demo_DBSlide.Services
         public void Delete(int id)
         {
             _repository.Delete(id);
+        }
+        public IEnumerable<Student> GetBySection(int id)
+        {
+            return _repository.GetBySection(id).Select(d => d.ToBLL());
         }
     }
 }

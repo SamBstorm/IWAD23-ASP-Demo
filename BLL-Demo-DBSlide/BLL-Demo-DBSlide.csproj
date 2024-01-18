@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DAL-Demo-DBSlide\DAL-Demo-DBSlide.csproj" />
+    <ProjectReference Include="..\Shared-Demo-DBSlide\Shared-Demo-DBSlide.csproj" />
   </ItemGroup>
 
 </Project>
