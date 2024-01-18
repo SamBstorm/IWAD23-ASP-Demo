@@ -5,10 +5,11 @@ using System.Text;
 using BLL_Demo_DBSlide.Entities;
 using System.Linq;
 using BLL_Demo_DBSlide.Mappers;
+using Shared_Demo_DBSlide.Repositories;
 
 namespace BLL_Demo_DBSlide.Services
 {
-    public class SectionService
+    public class SectionService : ISectionRepository<Section>
     {
         private readonly DAL.SectionService _repository;
 
