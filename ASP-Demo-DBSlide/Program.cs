@@ -1,6 +1,7 @@
 using Shared_Demo_DBSlide.Repositories;
 using BLL = BLL_Demo_DBSlide;
 using DAL = DAL_Demo_DBSlide;
+using Mockup = Mockup_Demo_DBSlide;
 
 namespace ASP_Demo_DBSlide
 {
@@ -15,7 +16,10 @@ namespace ASP_Demo_DBSlide
             //Ajout des services par injection de dépendance :
             #region Services
             builder.Services.AddScoped<IStudentRepository<BLL.Entities.Student>, BLL.Services.StudentService>();
+            builder.Services.AddScoped<ISectionRepository<BLL.Entities.Section>, BLL.Services.SectionService>();
             builder.Services.AddScoped<IStudentRepository<DAL.Entities.Student>, DAL.Services.StudentService>();
+            builder.Services.AddScoped<ISectionRepository<DAL.Entities.Section>, DAL.Services.SectionService>();
+            //builder.Services.AddScoped<IStudentRepository<Mockup.Entities.Student>, Mockup.Services.StudentService>();
             #endregion
 
             var app = builder.Build();

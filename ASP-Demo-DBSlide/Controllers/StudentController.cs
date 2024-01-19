@@ -10,9 +10,11 @@ namespace ASP_Demo_DBSlide.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentRepository<Student> _studentRepository;
-        public StudentController(IStudentRepository<Student> studentRepository)
+        private readonly ISectionRepository<Section> _sectionRepository;
+        public StudentController(IStudentRepository<Student> studentRepository, ISectionRepository<Section> sectionRepository)
         {
             _studentRepository = studentRepository;
+            _sectionRepository = sectionRepository;
         }
         // GET: StudentController
         public ActionResult Index()
@@ -36,11 +38,14 @@ namespace ASP_Demo_DBSlide.Controllers
         // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(StudentCreateForm form)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (form is null) ModelState.AddModelError(nameof(form), "Pas de données reçues");
+                if (!ModelState.IsValid) throw new Exception();
+                int id = _studentRepository.Insert(form.ToBLL());
+                return RedirectToAction(nameof(Details), new { id });
             }
             catch
             {

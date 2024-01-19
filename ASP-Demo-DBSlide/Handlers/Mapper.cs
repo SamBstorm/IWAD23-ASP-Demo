@@ -14,5 +14,20 @@ namespace ASP_Demo_DBSlide.Handlers
                 Last_name = entity.Last_name
             };
         }
+
+        public static Student ToBLL(this StudentCreateForm entity)
+        {
+            if (entity is null) return null;
+            return new Student(
+                0,
+                entity.First_name,
+                entity.Last_name,
+                entity.Birth_date,
+                "",
+                entity.Section_id,
+                null,
+                "0"
+                );
+        }
     }
 }

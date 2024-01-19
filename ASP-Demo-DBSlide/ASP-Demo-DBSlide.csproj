@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BLL-Demo-DBSlide\BLL-Demo-DBSlide.csproj" />
     <ProjectReference Include="..\DAL-Demo-DBSlide\DAL-Demo-DBSlide.csproj" />
+    <ProjectReference Include="..\Mockup-Demo-DBSlide\Mockup-Demo-DBSlide.csproj" />
     <ProjectReference Include="..\Shared-Demo-DBSlide\Shared-Demo-DBSlide.csproj" />
   </ItemGroup>
 
