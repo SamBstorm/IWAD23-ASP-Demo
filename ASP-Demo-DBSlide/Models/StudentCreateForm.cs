@@ -22,5 +22,7 @@ namespace ASP_Demo_DBSlide.Models
         [DisplayName("Section")]
         [Required(ErrorMessage ="Une section doit être choisie.")]
         public int Section_id { get; set; }
+        [DisplayName("Liste des sections")]
+        public IEnumerable<SectionListItemViewModel>? Sections { get; set; }
     }
 }

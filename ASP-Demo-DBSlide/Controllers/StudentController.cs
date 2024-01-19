@@ -4,6 +4,7 @@ using Shared_Demo_DBSlide.Repositories;
 using BLL_Demo_DBSlide.Entities;
 using ASP_Demo_DBSlide.Models;
 using ASP_Demo_DBSlide.Handlers;
+using System.Reflection;
 
 namespace ASP_Demo_DBSlide.Controllers
 {
@@ -32,7 +33,9 @@ namespace ASP_Demo_DBSlide.Controllers
         // GET: StudentController/Create
         public ActionResult Create()
         {
-            return View();
+            StudentCreateForm model = new StudentCreateForm();
+            model.Sections = _sectionRepository.Get().Select(d => d.ToListItem());
+            return View(model);
         }
 
         // POST: StudentController/Create
@@ -49,7 +52,9 @@ namespace ASP_Demo_DBSlide.Controllers
             }
             catch
             {
-                return View();
+                form ??= new StudentCreateForm();
+                form.Sections = _sectionRepository.Get().Select(d => d.ToListItem());
+                return View(form);
             }
         }
 

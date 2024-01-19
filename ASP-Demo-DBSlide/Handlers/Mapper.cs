@@ -5,7 +5,9 @@ namespace ASP_Demo_DBSlide.Handlers
 {
     public static class Mapper
     {
-        public static StudentListItemViewModel ToListItem(this Student entity) {
+        #region Student
+        public static StudentListItemViewModel ToListItem(this Student entity)
+        {
             if (entity is null) return null;
             return new StudentListItemViewModel()
             {
@@ -29,5 +31,17 @@ namespace ASP_Demo_DBSlide.Handlers
                 "0"
                 );
         }
+        #endregion
+        #region Section
+        public static SectionListItemViewModel ToListItem (this Section entity)
+        {
+            if (entity is null) return null;
+            return new SectionListItemViewModel()
+            {
+                Section_id = entity.Section_id,
+                Section_name = entity.Section_name
+            };
+        }
+        #endregion
     }
 }
