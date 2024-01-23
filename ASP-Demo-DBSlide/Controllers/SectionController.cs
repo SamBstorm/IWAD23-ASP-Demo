@@ -10,12 +10,10 @@ namespace ASP_Demo_DBSlide.Controllers
     public class SectionController : Controller
     {
         private readonly ISectionRepository<Section> _sectionRepository;
-        private readonly IStudentRepository<Student> _studentRepository;
 
-        public SectionController(ISectionRepository<Section> sectionRepository, IStudentRepository<Student> studentRepository)
+        public SectionController(ISectionRepository<Section> sectionRepository)
         {
             _sectionRepository = sectionRepository;
-            _studentRepository = studentRepository;
         }
 
         // GET: SectionController
@@ -28,7 +26,6 @@ namespace ASP_Demo_DBSlide.Controllers
         public ActionResult Details(int id)
         {
             SectionDetailsViewModel model = _sectionRepository.Get(id).ToDetails();
-            model.Students = _studentRepository.GetBySection(id).Select(d => d.ToListItem());
             return View(model);
         }
 

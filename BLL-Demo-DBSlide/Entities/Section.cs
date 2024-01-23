@@ -11,7 +11,7 @@ namespace BLL_Demo_DBSlide.Entities
         public int Section_id { get; private set; }
         public string Section_name { get; private set; }
         public int? Delegate_id { get; private set; }
-        public Student Delegate { get; private set; }
+        public DelStudent Delegate { get; private set; }
 
         public Student[] Students { 
             get { 
@@ -26,7 +26,7 @@ namespace BLL_Demo_DBSlide.Entities
             Delegate_id = delegate_id;
         }
 
-        public Section(int section_id, string section_name, Student del)
+        public Section(int section_id, string section_name, DelStudent del)
         {
             Section_id = section_id;
             Section_name = section_name;
@@ -48,7 +48,7 @@ namespace BLL_Demo_DBSlide.Entities
             if (students is null) throw new ArgumentNullException(nameof(students));
             foreach(Student student in students)
             {
-                AddStudent(student);
+                student.ChangeSection(this);
             }
         }
 
@@ -58,6 +58,18 @@ namespace BLL_Demo_DBSlide.Entities
             if(student is null) throw new ArgumentNullException(nameof(student));
             if (!_students.Contains(student)) throw new ArgumentException(nameof(student), $"L'étudiant {student.Student_id} n'est pas inscrit dans cette section.");
             _students.Remove(student);
+        }
+
+        public void ChangeDelegate(Student student)
+        {
+            if (student is null)
+            {
+                Delegate_id = null;
+                Delegate = null;
+                return;
+            }
+            Delegate_id = student.Student_id;
+            Delegate = new DelStudent( student, this );
         }
     }
 }

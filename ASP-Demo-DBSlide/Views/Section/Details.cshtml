@@ -42,4 +42,5 @@
 </div>
 <hr />
 <h2>Liste des étudiants :</h2>
-@Html.Partial("_StudentListPartialView",Model.Students)
+@* @Html.Partial("_StudentListPartialView",Model.Students) *@
+<partial name="_StudentListPartialView" model="Model.Students" />

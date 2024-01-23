@@ -53,7 +53,8 @@ namespace ASP_Demo_DBSlide.Handlers
                 Section_name = entity.Section_name,
                 Delegate_id = entity.Delegate_id,
                 Delegate_First_name = entity.Delegate?.First_name,
-                Delegate_Last_name = entity.Delegate?.Last_name
+                Delegate_Last_name = entity.Delegate?.Last_name,
+                Students = entity.Students.Select(d => d.ToListItem())
             };
         }
         #endregion
