@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ASP_Demo_DBSlide.Models.StudentListItemViewModel>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last_name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.First_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Student_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Student_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Student_id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

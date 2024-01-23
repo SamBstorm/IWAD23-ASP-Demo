@@ -94,5 +94,37 @@ namespace ASP_Demo_DBSlide.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public IActionResult ChangeSection(int id)
+        {
+            StudentChangeSectionForm model = _studentRepository.Get(id).ToChangeSection();
+            if(model is null) throw new ArgumentOutOfRangeException(nameof(id), $"Pas d'étudiant avec l'identifiant {id}");
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeSection(int id, StudentChangeSectionForm form)
+        {
+            try
+            {
+                if(form is null) ModelState.AddModelError(nameof(form), "Pas de données reçues");
+                Student data = _studentRepository.Get(id);
+                if (data is null) ModelState.AddModelError(nameof(id), "Pas d'étudiant avec cet identifiant");
+                form.First_name = data.First_name;
+                form.Last_name = data.Last_name;
+                Section section = _sectionRepository.Get(form.Section_id);
+                if (section is null) ModelState.AddModelError(nameof(form.Section_id), "Pas de section avec cet identifiant");
+                if (!ModelState.IsValid) throw new Exception();
+                data.ChangeSection(section);
+                _studentRepository.Update(data);
+                return RedirectToAction(nameof(Details), new { id });
+            }
+            catch (Exception)
+            {
+                return View(form);
+            }
+        }
     }
 }

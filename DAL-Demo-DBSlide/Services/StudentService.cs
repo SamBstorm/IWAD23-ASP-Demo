@@ -80,10 +80,15 @@ namespace DAL_Demo_DBSlide.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SP_student_update_year_result";
+                    command.CommandText = "SP_student_update";
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("id", data.Student_Id);
+                    command.Parameters.AddWithValue("first_name", data.First_name);
+                    command.Parameters.AddWithValue("last_name", data.Last_name);
+                    command.Parameters.AddWithValue("birth_date", data.Birth_date);
+                    command.Parameters.AddWithValue("section_id", data.Section_id);
                     command.Parameters.AddWithValue("year_result", data.Year_result ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("course_id", data.Course_id);
                     connection.Open();
                     if (command.ExecuteNonQuery() <= 0)
                         throw new ArgumentException(nameof(data.Student_Id), $"L'identifiant {data.Student_Id} n'est pas das la base de données");

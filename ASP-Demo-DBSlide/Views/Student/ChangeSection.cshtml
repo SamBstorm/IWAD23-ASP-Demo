@@ -1,0 +1,48 @@
+﻿@model ASP_Demo_DBSlide.Models.StudentChangeSectionForm
+@inject ISectionRepository<Section> sectionRepository;
+
+@{
+    ViewData["Title"] = "ChangeSection";
+}
+
+<h1>@Model.Last_name.ToUpper(), @Model.First_name</h1>
+
+<h4>StudentChangeSectionForm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeSection">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Student_id" class="form-control" />
+                <span asp-validation-for="Student_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Section_id" class="control-label"></label>
+                <select asp-for="Section_id" asp-items="sectionRepository
+                                                            .Get()
+                                                            .Select( d => new SelectListItem () {
+                                                                    Text = d.Section_name,
+                                                                    Value = d.Section_id.ToString(), 
+                                                                    Selected = d.Section_id == Model.Section_id}
+                                                                   )">
+                    @* @foreach(Section sect in sectionRepository.Get()){
+                        <option value="@sect.Section_id">@sect.Section_name</option>
+                    } *@
+                </select>
+                <span asp-validation-for="Section_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
