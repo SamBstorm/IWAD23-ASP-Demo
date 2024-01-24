@@ -34,6 +34,16 @@ namespace Mockup_Demo_DBSlide.Services
             return _students.Where(d => d.Section_id == id);
         }
 
+        public IEnumerable<Student> GetDelegate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Student GetDelegate(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Insert(Student data)
         {
             data.Student_id = _students.Max(d=> d.Student_id) + 1;
