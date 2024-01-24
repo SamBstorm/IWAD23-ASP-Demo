@@ -1,0 +1,12 @@
+﻿CREATE FUNCTION [dbo].[SF_HashSaltPassword]
+(
+	@password NVARCHAR(32),
+	@salt UNIQUEIDENTIFIER
+)
+RETURNS VARBINARY(32)
+AS
+BEGIN
+	DECLARE @salted NVARCHAR(68)
+	SET @salted = CONCAT(LEFT(@salt,18),@password,RIGHT(@salt,18))
+	RETURN HASHBYTES('SHA2_256',@salted)
+END

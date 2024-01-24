@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[UserProfile]
+(
+	[User_Profile_Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+	[First_name] NVARCHAR(64) NOT NULL,
+	[Last_name] NVARCHAR(64) NOT NULL,
+	[Birth_date] DATETIME2 NOT NULL,
+	[User_Id] UNIQUEIDENTIFIER NOT NULL,
+	CONSTRAINT FK_UserProfile_User FOREIGN KEY ([User_Id]) REFERENCES [User]([User_Id])
+)
