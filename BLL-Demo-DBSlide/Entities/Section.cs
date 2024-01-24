@@ -9,24 +9,24 @@ namespace BLL_Demo_DBSlide.Entities
         private List<Student> _students;
 
         public int Section_id { get; private set; }
-        public string Section_name { get; private set; }
+        public string? Section_name { get; private set; }
         public int? Delegate_id { get; private set; }
         public DelStudent Delegate { get; private set; }
 
         public Student[] Students { 
             get { 
-                return _students.ToArray();
+                return _students?.ToArray() ?? new Student[0];
             }
         }
 
-        public Section(int section_id, string section_name, int? delegate_id)
+        public Section(int section_id, string? section_name, int? delegate_id)
         {
             Section_id = section_id;
             Section_name = section_name;
             Delegate_id = delegate_id;
         }
 
-        public Section(int section_id, string section_name, DelStudent del)
+        public Section(int section_id, string? section_name, DelStudent del)
         {
             Section_id = section_id;
             Section_name = section_name;

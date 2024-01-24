@@ -38,11 +38,14 @@ namespace ASP_Demo_DBSlide.Controllers
         // POST: SectionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(SectionCreateForm form)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (form is null) ModelState.AddModelError(nameof(form), "Aucun formulaire retourné...");
+                if (!ModelState.IsValid) throw new Exception();
+                int section_id = _sectionRepository.Insert(form.ToBLL());
+                return RedirectToAction(nameof(Details), new {id = section_id});
             }
             catch
             {

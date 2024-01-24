@@ -40,5 +40,15 @@ namespace BLL_Demo_DBSlide.Services
         {
             return _repository.GetBySection(id).Select(d => d.ToBLL());
         }
+
+        public IEnumerable<Student> GetDelegate()
+        {
+            return _repository.GetDelegate().Select(d => d.ToBLL());
+        }
+
+        public Student GetDelegate(int id)
+        {
+            return _repository.GetDelegate(id).ToBLL();
+        }
     }
 }

@@ -57,6 +57,16 @@ namespace ASP_Demo_DBSlide.Handlers
                 Students = entity.Students.Select(d => d.ToListItem())
             };
         }
+
+        public static Section ToBLL(this SectionCreateForm entity)
+        {
+            if (entity is null) return null;
+            return new Section(
+                entity.Section_id,
+                entity.Section_name,
+                entity.Delegate_id
+                );
+        }
         #endregion
     }
 }

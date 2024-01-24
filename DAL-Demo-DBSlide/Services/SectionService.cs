@@ -72,8 +72,8 @@ namespace DAL_Demo_DBSlide.Services
                 {
                     command.CommandText = "INSERT INTO [section] VALUES (@section_id, @section_name, @delegate_id)";
                     command.Parameters.AddWithValue("section_id", data.Section_id);
-                    command.Parameters.AddWithValue("section_name", data.Section_name);
-                    command.Parameters.AddWithValue("delegate_id", data.Delegate_id);
+                    command.Parameters.AddWithValue("section_name", (object?)data.Section_name ?? DBNull.Value);
+                    command.Parameters.AddWithValue("delegate_id", (object?)data.Delegate_id ?? DBNull.Value);
                     connection.Open();
                     if(command.ExecuteNonQuery() <= 0) throw new ArgumentException(nameof(data), $"Erreur lors de l'insertion des données.");
                     return data.Section_id;

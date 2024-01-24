@@ -126,5 +126,41 @@ namespace DAL_Demo_DBSlide.Services
                 }
             }
         }
+
+        public IEnumerable<Student> GetDelegate()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT DISTINCT [student].* FROM [student] JOIN [section] ON [student_id] = [delegate_id]";
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            yield return reader.ToStudent();
+                        }
+                    }
+                }
+            }
+        }
+
+        public Student GetDelegate(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [student].* FROM [student] JOIN [section] ON [student_id] = [delegate_id] AND [section].[section_id] = @id";
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) return reader.ToStudent();
+                        throw new ArgumentException(nameof(id), $"Pas de délégué pour la section {id}");
+                    }
+                }
+            }
+        }
     }
 }
