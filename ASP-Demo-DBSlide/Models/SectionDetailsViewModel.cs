@@ -16,6 +16,7 @@ namespace ASP_Demo_DBSlide.Models
         [DisplayName("Prénom")]
         public string? Delegate_First_name { get; set; }
         [ScaffoldColumn(false)]
+        [DisplayName("Liste des étudiants inscrits")]
         public IEnumerable<StudentListItemViewModel> Students { get; set; }
     }
 }
