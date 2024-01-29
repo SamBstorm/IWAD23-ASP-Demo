@@ -11,11 +11,13 @@ namespace ASP_Demo_Session.Controllers
         {
             _userSessionManager = userSessionManager;
         }
+
+        [AnonymousUserSessionFilter]
         public IActionResult Index()
         {
             return RedirectToAction(nameof(Login));
         }
-
+        [AnonymousUserSessionFilter]
         public IActionResult Login()
         {
             return View();
@@ -39,7 +41,7 @@ namespace ASP_Demo_Session.Controllers
                 return View();
             }
         }
-
+        [UserLoggedSessionFilter]
         public IActionResult Logout()
         {
             return View();
