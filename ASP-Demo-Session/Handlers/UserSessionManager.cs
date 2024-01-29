@@ -13,7 +13,7 @@ namespace ASP_Demo_Session.Handlers
         public CurrentUser? CurrentUser     //Permet de récupérer les données sauvgardées en session
         {
             //Deserialize : JSON => C#
-            get { return JsonSerializer.Deserialize<CurrentUser>(_session.GetString(nameof(CurrentUser)) ?? ""); }
+            get { return JsonSerializer.Deserialize<CurrentUser>(_session.GetString(nameof(CurrentUser)) ?? "null"); }
         }
 
         public void LogUser(CurrentUser user)   //Permet de sauvegarder les données de l'utilisateur dans la session

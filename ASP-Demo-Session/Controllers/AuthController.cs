@@ -51,7 +51,9 @@ namespace ASP_Demo_Session.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index), "Home");
+                if (!ModelState.IsValid) throw new Exception();
+                _userSessionManager.DisconnectUser();
+                return RedirectToAction(nameof(Login));
             }
             catch
             {
