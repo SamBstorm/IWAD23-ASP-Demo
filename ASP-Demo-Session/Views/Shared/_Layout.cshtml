@@ -31,6 +31,8 @@
         </nav>
     </header>
     <div class="container">
+        @*Vue partielle permettant d'obtenir une banière demandant le consentement de l'utilisateur pour l'utilisation des cookies essentiels*@
+        <partial name="_CookieConsentPartial"/>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

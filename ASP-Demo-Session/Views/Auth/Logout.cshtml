@@ -1,0 +1,15 @@
+﻿@model ASP_Demo_Session.Models.AuthLogoutForm
+
+@{
+    ViewData["Title"] = "Logout";
+}
+
+<h1>Logout</h1>
+
+<h3>Êtes-vous sûr(e) de vouloir vous déconnecter?</h3>
+<div>
+    <form asp-action="Logout">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

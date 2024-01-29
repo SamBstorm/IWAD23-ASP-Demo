@@ -1,3 +1,6 @@
+using ASP_Demo_Session.Handlers;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace ASP_Demo_Session
 {
     public class Program
@@ -8,13 +11,29 @@ namespace ASP_Demo_Session
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDistributedMemoryCache();
-            builder.Services.AddSession(options =>
+
+            #region Services de session
+            builder.Services.AddHttpContextAccessor();  //Injection de dépendance du HttpContext dans le SessionManager (Handlers)
+
+            builder.Services.AddDistributedMemoryCache();   //Ajout d'espace mémoire pour lier les cookie à l'application
+
+            builder.Services.AddSession(options =>          //Création d'un cookie pour sauvegarder la session
             {
                 options.Cookie.Name = "ASP-Demo-Session";
                 options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
+
+            builder.Services.Configure<CookiePolicyOptions>(options =>  //Définition des règles (pour être OK avec le RGPD)
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Secure = CookieSecurePolicy.Always;
+            });
+
+            builder.Services.AddScoped<UserSessionManager>();   //Ajout du UserSessionManager (Handlers) par injection de dépendance
+            #endregion
 
             var app = builder.Build();
 
@@ -23,7 +42,9 @@ namespace ASP_Demo_Session
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseSession();
+
+            app.UseSession();       //Activation des Middlewares permettant le contrôle 
+            app.UseCookiePolicy();  //du Cookie de Session durant chaque requête HTTP
 
             app.UseStaticFiles();
 
